@@ -16,10 +16,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Reader;
+import java.io.*;
+import java.util.List;
 
 /**
  * Created by Jch on 2016/8/26.
@@ -45,8 +43,13 @@ public class InfoServlet extends HttpServlet  {
     // 这个方法获取entity里的数据并转换成String
     private String getEntity(HttpServletRequest request) throws ServletException, IOException {
         StringBuilder builder = new StringBuilder();
-        String line ;
-        BufferedReader reader = request.getReader();
+        String line;
+
+        // 必须要先获得InputStream，这样才能设置正确的编码格式
+        InputStream stream = request.getInputStream();
+        InputStreamReader streamReader = new InputStreamReader(stream, "UTF-8");
+        BufferedReader reader = new BufferedReader(streamReader);
+
         while((line = reader.readLine())!= null)
             builder.append(line);
         return builder.toString();
@@ -58,6 +61,7 @@ public class InfoServlet extends HttpServlet  {
         SqlSession session = sqlSessionFactory.openSession();
         // 获取post请求的entity-body
         String str = getEntity(request);
+        System.out.println(str);
 
         // 数据操作接口和post过来的json数据转换成的对象
         IBaseDao iDao = null;
@@ -90,7 +94,31 @@ public class InfoServlet extends HttpServlet  {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        SqlSession session = sqlSessionFactory.openSession();
+        PrintWriter writer = response.getWriter();
 
+        switch (request.getParameter("tblname")){
+            case "tbl_userinfo":
+                IUserInfo iUserInfo = session.getMapper(IUserInfo.class);
+
+                String userID = request.getParameter("userID");
+                if (userID != null) {
+                    UserInfo info = iUserInfo.selectByID(Integer.valueOf(userID));
+                    writer.print(new Gson().toJson(info));
+                    break;
+                }
+
+                String deptID = request.getParameter("deptID");
+                String userPosition = request.getParameter("userPosition");
+                List<UserInfo> list = iUserInfo.selectMany(deptID,userPosition);
+                writer.print(new Gson().toJson(list));
+                break;
+            case "tbl_deptinfo" :
+                break;
+        }
+
+        session.close();
+        writer.close();
     }
 
     @Override

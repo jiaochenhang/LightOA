@@ -29,10 +29,12 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        String str = "{\"userID\":\"11\",\"userName\":\"11\",\"userPwd\":\"\",\"userSex\":\"男\",\"userEmail\":\"\",\"userPosition\":\"\",\"deptID\":\"\",\"userAge\":\"44\",\"userPhone\":\"234\",\"userDate\":\"20130909\"}";
-        UserInfo info = new Gson().fromJson(str, UserInfo.class);
-        SqlSession session = sqlSessionFactory.openSession();
-        session.getMapper(IUserInfo.class);
-        System.out.println();
+//        String str = "{\"userID\":\"11\",\"userName\":\"11\",\"userPwd\":\"\",\"userSex\":\"男\",\"userEmail\":\"\",\"userPosition\":\"\",\"deptID\":\"\",\"userAge\":\"44\",\"userPhone\":\"234\",\"userDate\":\"20130909\"}";
+//        UserInfo info = new Gson().fromJson(str, UserInfo.class);
+//        SqlSession session = sqlSessionFactory.openSession();
+//        session.getMapper(IUserInfo.class);
+//        System.out.println();
+        String str = null;
+        int i = Integer.valueOf(str);
     }
 }

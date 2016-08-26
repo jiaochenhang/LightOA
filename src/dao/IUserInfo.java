@@ -1,6 +1,9 @@
 package dao;
 
 import model.UserInfo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * Created by Jch on 2016/8/25.
@@ -18,4 +21,6 @@ public interface IUserInfo extends IBaseDao<UserInfo>{
 
     @Override
     void deleteByID(int id);
+
+    List<UserInfo> selectMany(@Param("deptID")String deptID, @Param("userPosition")String userPosition);
 }

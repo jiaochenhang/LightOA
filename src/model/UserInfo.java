@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Date;
+
 /**
  * Created by Jch on 2016/8/25.
  */
@@ -24,6 +26,19 @@ public class UserInfo {
         this.userEmail = userEmail;
         this.userPhone = userPhone;
         this.userDate = userDate;
+        this.userPosition = userPosition;
+        this.deptID = deptID;
+    }
+
+    public UserInfo(String userID, String userName, String userPwd, Long userAge, String userSex, String userEmail, Long userPhone, Date userDate, String userPosition, String deptID) {
+        this.userID = userID;
+        this.userName = userName;
+        this.userPwd = userPwd;
+        this.userAge = userAge.toString();
+        this.userSex = userSex;
+        this.userEmail = userEmail;
+        this.userPhone = userPhone.toString();
+        this.userDate = userDate.toString();
         this.userPosition = userPosition;
         this.deptID = deptID;
     }

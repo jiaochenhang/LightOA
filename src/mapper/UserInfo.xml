@@ -12,7 +12,65 @@
         VALUES (#{userID},#{userName},#{userPwd},#{userAge},#{userSex},#{userEmail},#{userPhone},#{userDate},#{userPosition},#{deptID})
     </insert>
 
+    <update id="update" parameterType="UserInfo">
+        UPDATE `tbl_userinfo`
+        <set>
+            <if test="userName != ''">
+                userName = #{userName},
+            </if>
+            <if test="userPwd != ''">
+                userPwd = #{userPwd},
+            </if>
+            <if test="userAge != ''">
+                userAge = #{userAge},
+            </if>
+            <if test="userSex != ''">
+                userSex = #{userSex},
+            </if>
+            <if test="userEmail != ''">
+                userEmail = #{userEmail},
+            </if>
+            <if test="userPhone != ''">
+                userPhone = #{userPhone},
+            </if>
+            <if test="userDate != ''">
+                userDate = #{userDate},
+            </if>
+            <if test="userPosition != ''">
+                userPosition = #{userPosition},
+            </if>
+            <if test="deptID != ''">
+                deptID = #{deptID},
+            </if>
+        </set>
+        WHERE userID = #{userID}
+    </update>
+
     <delete id="deleteByID" parameterType="int">
         DELETE FROM `tbl_userinfo` WHERE userID = #{id}
     </delete>
+
+    <resultMap id="resultList" type="UserInfo">
+        <id column="userID" property="userID"/>
+        <result column="userName" property="userName"/>
+        <result column="userPwd" property="userPwd"/>
+        <result column="userAge" property="userAge"/>
+        <result column="userSex" property="userSex"/>
+        <result column="userEmail" property="userEmail"/>
+        <result column="userPhone" property="userPhone"/>
+        <result column="userDate" property="userDate"/>
+        <result column="userPosition" property="userPosition"/>
+        <result column="deptID" property="deptID"/>
+    </resultMap>
+
+    <select id="selectMany" resultMap="resultList">
+        SELECT * FROM `tbl_userinfo` WHERE 1 = 1
+        <if test="deptID != null">
+            AND deptID = #{deptID}
+        </if>
+        <if test="userPosition != null">
+            AND userPosition = #{userPosition}
+        </if>
+    </select>
+
 </mapper>
