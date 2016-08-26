@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.IDeptInfo">
+    <insert id="insert" parameterType="DeptInfo">
+        INSERT INTO `tbl_deptinfo` VALUES (#{deptID}, #{deptName})
+    </insert>
+
+    <delete id="deleteByID" parameterType="int">
+        DELETE FROM `tbl_deptinfo` WHERE deptID = #{id}
+    </delete>
+</mapper>

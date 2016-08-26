@@ -1,6 +1,9 @@
 package test;
 
+import com.google.gson.Gson;
+import dao.IDeptInfo;
 import dao.IUserInfo;
+import model.DeptInfo;
 import model.UserInfo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -26,14 +29,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        String str = "{\"userID\":\"11\",\"userName\":\"11\",\"userPwd\":\"\",\"userSex\":\"男\",\"userEmail\":\"\",\"userPosition\":\"\",\"deptID\":\"\",\"userAge\":\"44\",\"userPhone\":\"234\",\"userDate\":\"20130909\"}";
+        UserInfo info = new Gson().fromJson(str, UserInfo.class);
         SqlSession session = sqlSessionFactory.openSession();
-        try {
-            IUserInfo userOperation=session.getMapper(IUserInfo.class);
-            UserInfo user = userOperation.selectByID(0);
-            System.out.println(user.getUserPwd());
-            System.out.println(user.getUserName());
-        } finally {
-            session.close();
-        }
+        session.getMapper(IUserInfo.class);
+        System.out.println();
     }
 }

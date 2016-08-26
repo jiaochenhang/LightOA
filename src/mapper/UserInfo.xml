@@ -6,4 +6,13 @@
     <select id="selectByID" parameterType="int" resultType="UserInfo">
         SELECT * FROM `tbl_userinfo` WHERE userID = #{id}
     </select>
+
+    <insert id="insert" parameterType="UserInfo">
+        INSERT INTO `tbl_userinfo`
+        VALUES (#{userID},#{userName},#{userPwd},#{userAge},#{userSex},#{userEmail},#{userPhone},#{userDate},#{userPosition},#{deptID})
+    </insert>
+
+    <delete id="deleteByID" parameterType="int">
+        DELETE FROM `tbl_userinfo` WHERE userID = #{id}
+    </delete>
 </mapper>

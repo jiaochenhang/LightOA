@@ -17,7 +17,7 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         if (password.equals("admin") & username.equals("admin")) {
             PrintWriter writer = resp.getWriter();
-            writer.print("success");
+            writer.print("true");
         }
     }
 }
