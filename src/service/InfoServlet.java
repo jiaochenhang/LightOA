@@ -6,6 +6,7 @@ import dao.IDeptInfo;
 import dao.IUserInfo;
 import model.DeptInfo;
 import model.UserInfo;
+import model.WorkDateInfo;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -23,6 +24,7 @@ import static util.Utils.getSqlSessionFactory;
 /**
  * Created by Jch on 2016/8/26.
  * 处理部门信息和员工信息的Servlet
+ * 处理工作时间的servlet
  * 映射的路径是/info
  */
 
@@ -54,6 +56,7 @@ public class InfoServlet extends HttpServlet  {
                 jObj = new Gson().fromJson(entity, DeptInfo.class);
                 iDao = session.getMapper(IDeptInfo.class);
                 break;
+
         }
 
         // 执行相应的数据库操作
@@ -72,14 +75,13 @@ public class InfoServlet extends HttpServlet  {
         writer.close();
     }
 
+    //处理Get请求
+    //服务端通过Get把JSON发送给客户端
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SqlSession session = sqlSessionFactory.openSession();
+        PrintWriter writer = response.getWriter();
 
-        OutputStream stream= response.getOutputStream();
-        OutputStreamWriter streamWriter = new OutputStreamWriter(stream, "UTF-8");
-        BufferedWriter writer = new BufferedWriter(streamWriter);
-
-        switch (request.getParameter("tblname")){
+        switch (request.getParameter("tblname")) {
             case "tbl_userinfo":
                 IUserInfo iUserInfo = session.getMapper(IUserInfo.class);
 
@@ -95,7 +97,7 @@ public class InfoServlet extends HttpServlet  {
                     writer.write(new Gson().toJson(list));
                 }
                 break;
-            case "tbl_deptinfo" :
+            case "tbl_deptinfo":
                 IDeptInfo iDeptInfo = session.getMapper(IDeptInfo.class);
 
                 String deptID = request.getParameter("deptID");
@@ -107,7 +109,6 @@ public class InfoServlet extends HttpServlet  {
                     List<DeptInfo> list = iDeptInfo.selectMany();
                     writer.write(new Gson().toJson(list));
                 }
-                break;
         }
 
         session.close();

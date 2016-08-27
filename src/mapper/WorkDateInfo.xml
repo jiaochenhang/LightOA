@@ -8,11 +8,13 @@
     </insert>
 
     <update id="update" parameterType="WorkDateInfo">
-        UPDATE `tbl_wdinfo` SET [day]=#{day}
+        UPDATE `tbl_wdinfo` SET day=#{day}
         WHERE year=#{year} AND month=#{month}
     </update>
 
     <select id="selectByYearMon" parameterType="WorkDateInfo" resultType="WorkDateInfo">
         SELECT * FROM `tbl_wdinfo` WHERE year=#{year} AND month=#{month}
     </select>
+
+
 </mapper>
