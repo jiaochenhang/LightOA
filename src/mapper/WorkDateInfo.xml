@@ -4,7 +4,7 @@
 
 <mapper namespace="dao.IWorkDateInfo">
     <insert id="insert" parameterType="WorkDateInfo">
-        INSERT INTO `tbl_wdinfo`(year,month,day) VALUES (#{name},#{month},#{day})
+        INSERT INTO `tbl_wdinfo`(year,month,day) VALUES (#{year},#{month},#{day})
     </insert>
 
     <update id="update" parameterType="WorkDateInfo">
