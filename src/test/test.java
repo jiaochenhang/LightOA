@@ -30,10 +30,8 @@ public class test {
         }
     }
     public void addWorkDateInfo(){
-        WorkDateInfo workDateInfo = new WorkDateInfo();
-        workDateInfo.setYear(2016);
-        workDateInfo.setMonth(1);
-        workDateInfo.setDay(0xb6ff9f1c);
+        WorkDateInfo workDateInfo = new WorkDateInfo(2016,2,0xb6ff9f1c);
+
         SqlSession session = sqlSessionFactory.openSession();
         try {
             IWorkDateInfo iWorkDateInfo=session.getMapper(IWorkDateInfo.class);
@@ -44,19 +42,7 @@ public class test {
             session.close();
         }
     }
-    public void updateWorkDateInfo(){
-        //先得到时间,然后修改，提交。
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
-            IWorkDateInfo iWorkDateInfo=session.getMapper(IWorkDateInfo.class);
-            WorkDateInfo workDateInfo = iWorkDateInfo.selectByYearMon(2016,1);
-            workDateInfo.setDay(0x12345678);
-            iWorkDateInfo.update(workDateInfo);
-            session.commit();
-        } finally {
-            session.close();
-        }
-    }
+
     public static void main(String[] args) {
         test testWork = new test();
         testWork.addWorkDateInfo();

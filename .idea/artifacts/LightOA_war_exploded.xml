@@ -7,10 +7,7 @@
           <element id="module-output" name="LightOA" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="application" name="mysql:mysql-connector-java:6.0.3" />
-          <element id="library" level="application" name="org.mybatis:mybatis:3.4.1" />
-          <element id="library" level="application" name="com.google.code.gson:gson:2.7" />
-          <element id="library" level="project" name="mybatis-3.4.1" />
+          <element id="library" level="project" name="lib" />
           <element id="library" level="project" name="gson-2.7" />
         </element>
       </element>
