@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.IWorkDateInfo">
+    <insert id="insert" parameterType="WorkDateInfo">
+        INSERT INTO `tbl_wdinfo`(year,month,day) VALUES (#{name},#{month},#{day})
+    </insert>
+
+    <update id="update" parameterType="WorkDateInfo">
+        UPDATE `tbl_wdinfo` SET [day]=#{day}
+        WHERE year=#{year} AND month=#{month}
+    </update>
+
+    <select id="selectByYearMon" parameterType="WorkDateInfo" resultType="WorkDateInfo">
+        SELECT * FROM `tbl_wdinfo` WHERE year=#{year} AND month=#{month}
+    </select>
+</mapper>

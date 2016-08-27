@@ -62,7 +62,6 @@ public class InfoServlet extends HttpServlet  {
                 iDao.insert(jObj);
                 break;
             case "update":
-                System.out.println("update");
                 iDao.update(jObj);
                 break;
         }
