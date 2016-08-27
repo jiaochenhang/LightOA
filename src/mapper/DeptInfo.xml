@@ -10,4 +10,16 @@
     <delete id="deleteByID" parameterType="int">
         DELETE FROM `tbl_deptinfo` WHERE deptID = #{id}
     </delete>
+
+    <resultMap id="resultList" type="DeptInfo">
+        <id column="deptID" property="deptID"/>
+        <result column="deptName" property="deptName"/>
+        <result column="deptDate" property="deptDate"/>
+        <result column="deptWCnt" property="deptWCnt"/>
+        <result column="mngID" property="mngID"/>
+    </resultMap>
+
+    <select id="selectMany" resultMap="resultList">
+        SELECT * FROM `tbl_deptinfo`
+    </select>
 </mapper>

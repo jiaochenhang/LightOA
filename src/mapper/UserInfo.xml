@@ -50,6 +50,7 @@
         DELETE FROM `tbl_userinfo` WHERE userID = #{id}
     </delete>
 
+    <!-- 多个UserInfo结果的List类型 -->
     <resultMap id="resultList" type="UserInfo">
         <id column="userID" property="userID"/>
         <result column="userName" property="userName"/>
@@ -64,13 +65,20 @@
     </resultMap>
 
     <select id="selectMany" resultMap="resultList">
-        SELECT * FROM `tbl_userinfo` WHERE 1 = 1
-        <if test="deptID != null">
-            AND deptID = #{deptID}
-        </if>
-        <if test="userPosition != null">
-            AND userPosition = #{userPosition}
-        </if>
+        SELECT * FROM `tbl_userinfo`
+        <where>
+            <if test="deptID != null">
+                deptID = #{deptID}
+            </if>
+            <if test="userPosition != null">
+                AND userPosition = #{userPosition}
+            </if>
+        </where>
+    </select>
+
+    <select id="login" resultType="UserInfo">
+        SELECT * FROM `tbl_userinfo`
+        WHERE userID = #{id} AND userPwd = #{password} AND userPosition = #{position}
     </select>
 
 </mapper>
