@@ -4,38 +4,38 @@ package model;
  * Created by Cambridgewoo on 2016/8/27.
  */
 public class WorkDateInfo {
-    public WorkDateInfo(int year, int month, int day) {
+    private Integer year;
+    private Integer month;
+    private Integer day;
+
+    public WorkDateInfo(Integer year, Integer month, Integer day) {
         this.year = year;
         this.month = month;
         this.day = day;
     }
 
-    private int year;
+    public Integer getYear() {
 
-    public int getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
-    public int getMonth() {
+    public Integer getMonth() {
         return month;
     }
 
-    public void setMonth(int month) {
+    public void setMonth(Integer month) {
         this.month = month;
     }
 
-    public int getDay() {
+    public Integer getDay() {
         return day;
     }
 
-    public void setDay(int day) {
+    public void setDay(Integer day) {
         this.day = day;
     }
-
-    private int month;
-    private int day;
 }

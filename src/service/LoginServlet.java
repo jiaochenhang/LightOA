@@ -7,13 +7,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 
 import static util.Utils.*;
 
@@ -21,6 +20,7 @@ import static util.Utils.*;
  * 只处理登录的Servlet
  * Created by Jch on 2016/8/25.
  */
+@WebServlet(name = "WorkDateServlet")
 public class LoginServlet extends HttpServlet {
     private static SqlSessionFactory sessionFactory = getSqlSessionFactory();
 
