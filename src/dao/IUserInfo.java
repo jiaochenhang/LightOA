@@ -22,5 +22,7 @@ public interface IUserInfo extends IBaseDao<UserInfo>{
     @Override
     void deleteByID(int id);
 
-    List<UserInfo> selectMany(@Param("deptID")String deptID, @Param("userPosition")String userPosition);
+    List<UserInfo> selectMany(@Param("deptID") String deptID, @Param("userPosition") String userPosition);
+
+    UserInfo login(@Param("id") String id, @Param("password") String password, @Param("position") String position);
 }

@@ -30,14 +30,14 @@ public class UserInfo {
         this.deptID = deptID;
     }
 
-    public UserInfo(String userID, String userName, String userPwd, Long userAge, String userSex, String userEmail, Long userPhone, Date userDate, String userPosition, String deptID) {
+    public UserInfo(String userID, String userName, String userPwd, String userAge, String userSex, String userEmail, String userPhone, Date userDate, String userPosition, String deptID) {
         this.userID = userID;
         this.userName = userName;
         this.userPwd = userPwd;
-        this.userAge = userAge.toString();
+        this.userAge = userAge;
         this.userSex = userSex;
         this.userEmail = userEmail;
-        this.userPhone = userPhone.toString();
+        this.userPhone = userPhone;
         this.userDate = userDate.toString();
         this.userPosition = userPosition;
         this.deptID = deptID;
