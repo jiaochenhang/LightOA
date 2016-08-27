@@ -19,9 +19,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0.65" level="application_server_libraries" />
-    <orderEntry type="library" name="mysql:mysql-connector-java:6.0.3" level="application" />
-    <orderEntry type="library" name="org.mybatis:mybatis:3.4.1" level="application" />
-    <orderEntry type="library" name="com.google.code.gson:gson:2.7" level="application" />
+    <orderEntry type="library" name="gson-2.7" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
   </component>
 </module>

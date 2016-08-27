@@ -4,6 +4,12 @@ package model;
  * Created by Cambridgewoo on 2016/8/27.
  */
 public class WorkDateInfo {
+    public WorkDateInfo(int year, int month, int day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
+
     private int year;
 
     public int getYear() {

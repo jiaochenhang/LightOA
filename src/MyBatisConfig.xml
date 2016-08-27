@@ -6,6 +6,7 @@
         <typeAlias alias="UserInfo" type="model.UserInfo"/>
         <typeAlias alias="DeptInfo" type="model.DeptInfo"/>
         <typeAlias alias="Attendance" type="model.Attendance"/>
+        <typeAlias alias="WorkDateInfo" type="model.WorkDateInfo"/>
     </typeAliases>
 
     <environments default="development">
@@ -24,5 +25,6 @@
         <mapper resource="mapper/UserInfo.xml"/>
         <mapper resource="mapper/DeptInfo.xml"/>
         <mapper resource="mapper/Attendance.xml"/>
+        <mapper resource="mapper/WorkDateInfo.xml"/>
     </mappers>
 </configuration>

@@ -6,6 +6,7 @@ import dao.IDeptInfo;
 import dao.IUserInfo;
 import model.DeptInfo;
 import model.UserInfo;
+import model.WorkDateInfo;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -24,6 +25,7 @@ import static util.Utils.getUTF8Writer;
 /**
  * Created by Jch on 2016/8/26.
  * 处理部门信息和员工信息的Servlet
+ * 处理工作时间的servlet
  * 映射的路径是/info
  */
 
