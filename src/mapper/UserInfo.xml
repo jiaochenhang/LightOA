@@ -4,7 +4,7 @@
 
 <mapper namespace="dao.IUserInfo">
     <select id="selectByID" parameterType="int" resultType="UserInfo">
-        SELECT * FROM `tbl_userinfo` WHERE userID = #{id}
+        SELECT * FROM `tbl_userinfo` WHERE userID = #{userID}
     </select>
 
     <insert id="insert" parameterType="UserInfo">

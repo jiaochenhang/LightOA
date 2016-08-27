@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 import dao.IBaseDao;
 import dao.IDeptInfo;
 import dao.IUserInfo;
+import dao.IWorkDateInfo;
 import model.DeptInfo;
 import model.UserInfo;
+import model.WorkDateInfo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -22,6 +24,7 @@ import java.util.List;
 /**
  * Created by Jch on 2016/8/26.
  * 处理部门信息和员工信息的Servlet
+ * 处理工作时间的servlet
  * 映射的路径是/info
  */
 
@@ -77,6 +80,10 @@ public class InfoServlet extends HttpServlet  {
                 jObj = new Gson().fromJson(str, DeptInfo.class);
                 iDao = session.getMapper(IDeptInfo.class);
                 break;
+            case "tbl_wdinfo":
+                jObj = new Gson().fromJson(str, WorkDateInfo.class);
+                iDao = session.getMapper(IWorkDateInfo.class);
+                break;
         }
 
         // 执行相应的数据库操作
@@ -93,11 +100,13 @@ public class InfoServlet extends HttpServlet  {
         session.close();
     }
 
+    //处理Get请求
+    //服务端通过Get把JSON发送给客户端
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SqlSession session = sqlSessionFactory.openSession();
         PrintWriter writer = response.getWriter();
 
-        switch (request.getParameter("tblname")){
+        switch (request.getParameter("tblname")) {
             case "tbl_userinfo":
                 IUserInfo iUserInfo = session.getMapper(IUserInfo.class);
 
@@ -110,15 +119,24 @@ public class InfoServlet extends HttpServlet  {
 
                 String deptID = request.getParameter("deptID");
                 String userPosition = request.getParameter("userPosition");
-                List<UserInfo> list = iUserInfo.selectMany(deptID,userPosition);
+                List<UserInfo> list = iUserInfo.selectMany(deptID, userPosition);
                 writer.print(new Gson().toJson(list));
                 break;
-            case "tbl_deptinfo" :
+            case "tbl_deptinfo":
                 break;
-        }
+            case "tbl_wdinfo":
+                IWorkDateInfo iWorkDateInfo = session.getMapper(IWorkDateInfo.class);
 
-        session.close();
-        writer.close();
+                String year = request.getParameter("year");
+                String month = request.getParameter("month");
+                if (year != null && month != null) {
+                    WorkDateInfo info = iWorkDateInfo.selectByYearMon(Integer.valueOf(year), Integer.valueOf(month));
+                    writer.print(new Gson().toJson(info));
+                    break;
+                }
+                session.close();
+                writer.close();
+        }
     }
 
     @Override

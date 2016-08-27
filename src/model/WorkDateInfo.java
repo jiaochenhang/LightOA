@@ -3,7 +3,7 @@ package model;
 /**
  * Created by Cambridgewoo on 2016/8/27.
  */
-public class WorkingDateInfo {
+public class WorkDateInfo {
     private int year;
 
     public int getYear() {
