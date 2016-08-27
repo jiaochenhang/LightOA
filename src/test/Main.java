@@ -11,30 +11,17 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.Reader;
+import java.sql.Date;
+import java.sql.Time;
 
 /**
  * Created by Jch on 2016/8/25.
  */
 public class Main {
-    private static SqlSessionFactory sqlSessionFactory;
-    private static Reader reader;
-
-    static{
-        try{
-            reader = Resources.getResourceAsReader("MyBatisConfig.xml");
-            sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-
     public static void main(String[] args) {
-//        String str = "{\"userID\":\"11\",\"userName\":\"11\",\"userPwd\":\"\",\"userSex\":\"男\",\"userEmail\":\"\",\"userPosition\":\"\",\"deptID\":\"\",\"userAge\":\"44\",\"userPhone\":\"234\",\"userDate\":\"20130909\"}";
-//        UserInfo info = new Gson().fromJson(str, UserInfo.class);
-//        SqlSession session = sqlSessionFactory.openSession();
-//        session.getMapper(IUserInfo.class);
-//        System.out.println();
-        String str = null;
-        int i = Integer.valueOf(str);
+        Date date = new Date( System.currentTimeMillis());
+        System.out.println(date);
+        Time time = new Time(System.currentTimeMillis());
+        System.out.println(time);
     }
 }

@@ -3,8 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dao.IDeptInfo">
+    <select id="selectByID" parameterType="int" resultType="DeptInfo">
+        SELECT * FROM `tbl_deptinfo` WHERE deptID = #{id}
+    </select>
+
     <insert id="insert" parameterType="DeptInfo">
-        INSERT INTO `tbl_deptinfo` VALUES (#{deptID}, #{deptName})
+        INSERT INTO `tbl_deptinfo` VALUES (#{deptID}, #{deptName}, #{deptDate}, #{deptWCnt}, #{mngID})
     </insert>
 
     <delete id="deleteByID" parameterType="int">
@@ -22,4 +26,23 @@
     <select id="selectMany" resultMap="resultList">
         SELECT * FROM `tbl_deptinfo`
     </select>
+
+    <update id="update" parameterType="DeptInfo">
+        UPDATE `tbl_deptinfo`
+        <set>
+            <if test="deptName != ''">
+                deptName = #{deptName},
+            </if>
+            <if test="deptDate != ''">
+                deptDate = #{deptDate},
+            </if>
+            <if test="deptWCnt != ''">
+                deptWCnt = #{deptWCnt},
+            </if>
+            <if test="mngID != ''">
+                mngID = #{mngID},
+            </if>
+        </set>
+        WHERE deptID = #{deptID}
+    </update>
 </mapper>

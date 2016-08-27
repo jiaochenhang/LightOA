@@ -4,7 +4,7 @@
 
 <mapper namespace="dao.IUserInfo">
     <select id="selectByID" parameterType="int" resultType="UserInfo">
-        SELECT * FROM `tbl_userinfo` WHERE userID = #{userID}
+        SELECT * FROM `tbl_userinfo` WHERE userID = #{id}
     </select>
 
     <insert id="insert" parameterType="UserInfo">
@@ -76,9 +76,9 @@
         </where>
     </select>
 
+    <!-- 专门用来登陆的select语句 -->
     <select id="login" resultType="UserInfo">
         SELECT * FROM `tbl_userinfo`
         WHERE userID = #{id} AND userPwd = #{password} AND userPosition = #{position}
     </select>
-
 </mapper>

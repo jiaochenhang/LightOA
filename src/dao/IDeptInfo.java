@@ -21,5 +21,9 @@ public interface IDeptInfo extends IBaseDao<DeptInfo> {
     void deleteByID(int id);
 
 
+    /**
+     * 获得所有部门信息
+     * @return DeptInfo的List
+     */
     List<DeptInfo> selectMany();
 }

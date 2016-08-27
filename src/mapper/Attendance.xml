@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.IAttendance">
+    <insert id="insert" parameterType="Attendance">
+        INSERT INTO `tbl_attendance` VALUES (#{userID}, #{date}, #{time}, #{status})
+    </insert>
+
+    <resultMap id="resultList" type="Attendance">
+        <result column="userID" property="userID"/>
+        <result column="date" property="date"/>
+        <result column="time" property="time"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="selectMany" resultMap="resultList">
+        SELECT * FROM `tbl_attendance`
+        <where>
+            <if test="userID != null">
+                userID = #{userID}
+            </if>
+            <if test="date != null">
+                AND date = #{date}
+            </if>
+            <if test="deptID != null">
+                AND userID IN
+                (SELECT userID FROM `tbl_userinfo` WHERE deptID = #{deptID})
+            </if>
+        </where>
+    </select>
+</mapper>

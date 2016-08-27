@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Date;
+
 /**
  * Created by Jch on 2016/8/25.
  */
@@ -15,6 +17,15 @@ public class DeptInfo {
         this.deptID = deptID;
         this.deptName = deptName;
         this.deptDate = deptDate;
+        this.deptWCnt = deptWCnt;
+        this.mngID = mngID;
+    }
+
+    public DeptInfo(String deptID, String deptName, Date deptDate, String deptWCnt, String mngID) {
+
+        this.deptID = deptID;
+        this.deptName = deptName;
+        this.deptDate = deptDate.toString();
         this.deptWCnt = deptWCnt;
         this.mngID = mngID;
     }

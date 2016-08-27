@@ -18,6 +18,7 @@ import java.io.OutputStreamWriter;
 import static util.Utils.*;
 
 /**
+ * 只处理登录的Servlet
  * Created by Jch on 2016/8/25.
  */
 public class LoginServlet extends HttpServlet {
@@ -27,20 +28,21 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         SqlSession session = sessionFactory.openSession();
 
-        OutputStream stream= resp.getOutputStream();
-        OutputStreamWriter streamWriter = new OutputStreamWriter(stream, "UTF-8");
-        BufferedWriter writer = new BufferedWriter(streamWriter);
-
+        // 从参数里拿到用户输入
         String password = req.getParameter("userPwd");
         String username = req.getParameter("userID");
         String position = req.getParameter("position");
 
+        // 查询数据库
         IUserInfo iUserInfo = session.getMapper(IUserInfo.class);
         UserInfo info = iUserInfo.login(username, password, position);
-
         String json = new Gson().toJson(info);
+
+        // 返回结果
+        BufferedWriter writer = getUTF8Writer(resp);
         writer.write(json);
 
+        // 资源释放
         session.close();
         writer.close();
     }
